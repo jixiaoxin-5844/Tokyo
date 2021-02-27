@@ -8,6 +8,7 @@ class App: BaseApp() {
     override fun onCreate() {
         super.onCreate()
 
+        //多进程判断，退出初始化
 
         //bug ly
         val userStrategy = CrashReport.UserStrategy(this).apply {
@@ -16,5 +17,8 @@ class App: BaseApp() {
             appPackageName = BuildConfig.APPLICATION_ID
         }
         CrashReport.initCrashReport(this,userStrategy)
+
+
+
     }
 }

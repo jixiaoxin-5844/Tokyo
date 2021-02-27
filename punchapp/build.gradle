@@ -32,14 +32,9 @@ android {
         // 默认值
         manifestPlaceholders = [
                 //BD_LOCATION_AK          : properties.getProperty("${AppName}_ak"),
-
                 CHANNEL_VALUE : "default",
+                BUGLY_APP_ID          : properties.getProperty("${AppName}_BUGLY_APP_ID")
         ]
-
-        manifestPlaceholders = [
-                BUGLY_APP_ID          : properties.getProperty("${AppName}_BUGLY_APP_ID"),
-        ]
-
 
     }
 
