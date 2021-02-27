@@ -1,11 +1,13 @@
 package com.hyt.punchapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.hyt.base_lib.base.BaseBindingActivity
+import com.hyt.punchapp.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding
     }
 }

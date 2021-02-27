@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <!--PureColor-->
+    <color name="transparent">#00000000</color>
+    <color name="blue">#318BF8</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="red_alarm">#c01b09</color>
+    <color name="blue_alarm">#318bf8</color>
+    <color name="yellow_alarm">#d1ca13</color>
+    <color name="orange_alarm">#d76801</color>
+
+    <!--themeColor-->
+    <color name="pink">#FFC0CB</color>  <!--少女粉-->
+    <color name="Violet">#EE82EE</color>  <!--紫罗兰-->
+    <color name="RoyalBlue">#4169E1</color>  <!--宝蓝-->
+    <color name="DarkOrange">#FF8C00</color>  <!--橙色-->
+</resources>
