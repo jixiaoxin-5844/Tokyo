@@ -5,7 +5,7 @@ plugins {
 }
 
 //App名字
-String AppName = "punch"
+String AppName = "Punch"
 
 // 获取local.properties的内容
 Properties properties = new Properties()
@@ -13,6 +13,14 @@ properties.load(project.rootProject.file('local.properties').newDataInputStream(
 
 // 渠道列表
 String[] channelArray = properties.getProperty('channel.list').split(',')
+
+/*   打包命令
+ *   gradlew :Punch:assembleRelease
+ *   gradlew :Punch:assembleOssDebug
+ *   gradlew :Punch:assembleOssRelease
+ *   gradlew :Punch:assembleoppoRelease
+ *
+ */
 
 android {
     compileSdkVersion 30
@@ -35,6 +43,10 @@ android {
                 CHANNEL_VALUE : "default",
                 BUGLY_APP_ID          : properties.getProperty("${AppName}_BUGLY_APP_ID")
         ]
+
+        packagingOptions {
+            exclude 'META-INF/*.kotlin_module'
+        }
 
     }
 
@@ -68,6 +80,14 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        // 修改打包输出的文件名
+        applicationVariants.all { variant ->
+            variant.outputs.all {
+                outputFileName = "${AppName}-${defaultConfig.versionName}_${defaultConfig.versionCode}_${variant.productFlavors[0].name}.apk"
+            }
+        }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
