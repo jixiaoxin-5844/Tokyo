@@ -1,3 +1,4 @@
+include ':ui_lib'
 include ':tool_lib'
 rootProject.name = "Tokyo"
 
