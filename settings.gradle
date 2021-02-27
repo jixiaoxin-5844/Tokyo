@@ -1,3 +1,8 @@
-include ':base_lib'
-//include ':app'
 rootProject.name = "Tokyo"
+
+// #Application
+include ':punchapp'
+
+// #Library
+include ':base_lib'
+
