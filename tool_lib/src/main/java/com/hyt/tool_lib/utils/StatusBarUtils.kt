@@ -11,7 +11,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.NonNull
 import androidx.core.graphics.ColorUtils
 
-
+//太多废弃，暂时别用 - 2021-02-27
 object StatusBarUtils {
 
     //获取状态栏高度
