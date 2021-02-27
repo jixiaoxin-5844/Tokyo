@@ -1,0 +1,3 @@
+bitmap存储的是 图像的相关信息
+
+drawable是用来绘制图像的，类似canvas

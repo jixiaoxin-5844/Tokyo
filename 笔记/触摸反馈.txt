@@ -1,0 +1,30 @@
+public class TouchView extends View {
+
+    public TouchView(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        //event.getAction(); //是比较老的，不支持多点触控
+        // event.getActionMasked() 获取当前事件 表示当前动作
+        if(event.getActionMasked() == MotionEvent.ACTION_UP){
+            //触发点击
+            performClick();
+        }
+
+        event.getActionIndex(); //获取当前第几个手指
+        MotionEvent.ACTION_UP;    //抬起
+        MotionEvent.ACTION_DOWN;
+        MotionEvent.ACTION_MOVE;
+        MotionEvent.ACTION_CANCEL;
+        MotionEvent.ACTION_POINTER_DOWN;
+        MotionEvent.ACTION_POINTER_UP;
+        // 返回true表示消费这组事件
+        return true;
+    }
+}
+
+
+  android:tooltipText="长按提示文字" 解释当前view是什么

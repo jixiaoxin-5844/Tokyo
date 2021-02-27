@@ -1,0 +1,25 @@
+ 1 synchronized
+
+ 2 monitor 方法锁
+
+ 3 lock 读写锁
+
+ 4 volatile 原子性修饰基本属性
+
+ 5 AtomicInteger
+
+ 线程间通信
+
+
+
+ wait : 锁内 等待
+ notifyAll()通知解除 wait
+ join : 调用join的线程希望 先执行对应线程，执行完再执行自己
+ Thread.yield() 暂时把执行分配给同优先级的其他线程
+
+ 每一个线程，都有自己的 Looper
+
+
+
+ 内存泄露： 某些有子线程的类，持有View的引用，而且一直在运行，导致view没法被回收   （Activity里的内部类就是持有View的引用，比如可以调用onCreate）
+           防止内存泄漏，要注意这些在后台运行的，持有view的东西，在view关闭的时候，注意回收，别在后台一直运行

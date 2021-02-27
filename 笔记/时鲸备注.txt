@@ -1,0 +1,19 @@
+数据库存储
+
+chatList 聊天列表 userId字段 存储的id都是聊天对象的userId，而不是自身的userId
+添加数据 ->
+  1数据接收: NettyServices,这里都是接收，也就是别人发的消息 ， 直接拿sendUserId
+
+  2自身发送: 拿接收者userId，进行存储
+
+  (注意) 插入已存在userId的内容将会崩溃，只能使用update
+
+
+  ChatContent  聊天内容存储表  当前存储的是经过base64部分编码的内容 使用时需要解码
+  ChatActivity只需要读取这个表并刷新数据，
+  而每次发送或者接收都是更新这个表而已
+
+  2021/1/24 当前消息顺序存在问题，使用msgID排序，还是cMsgId 或者直接事件毫秒数
+
+
+

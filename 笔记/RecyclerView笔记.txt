@@ -1,0 +1,26 @@
+ViewHolder是什么: 
+
+
+
+
+  1   val llm = LinearLayoutManager(this)
+        //recyclerView嵌套recyclerView时，设置先显示个数，防止卡顿 横向列表初次显示时可见的item个数
+        //llm.initialPrefetchItemCount = 3
+只有嵌套在内部的recyclerview才会生效
+
+  2   //设置含有固定长度的recyclerView，不会每次都调用 requestLayout 重新绘制
+        recyclerView0.setHasFixedSize(true)
+
+  3  notifyDataSetChange 不适用的时候，使用
+        增量更新 DiffUtil
+
+
+     4   多个recyclerView共用RecycledViewPool
+            val recycledViewPool = RecyclerView.RecycledViewPool()
+                chatList_recyclerView.setRecycledViewPool(recycledViewPool)
+                chatList_recyclerView2.setRecycledViewPool(recycledViewPool)
+
+        5   使用onViewAttachedToWindow 统计展示
+        override fun onViewAttachedToWindow(holder: RecyclerView.ViewHolder) {
+                  super.onViewAttachedToWindow(holder)
+              }

@@ -1,0 +1,89 @@
+  private void callable() {
+        Callable<String> callable = new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                return "Done!";
+            }
+        };
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        Future<String> submit = executorService.submit(callable);
+        while (true){
+            if(submit.isDone()){
+                try {
+                    String s = submit.get();
+                    Log.d(TAG,"获取到的值:" + s);
+                }catch (InterruptedException | ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
+    }
+
+    //线程池
+    private void threadPool() {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Log.d(TAG,"执行1: ThreadName:" + Thread.currentThread().getName());
+            }
+        };
+
+        LinkedBlockingDeque<Runnable> queue = new LinkedBlockingDeque<>(100);
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(5, 50, 10, TimeUnit.SECONDS, queue);
+        threadPoolExecutor.execute(runnable);
+        threadPoolExecutor.execute(runnable);
+        threadPoolExecutor.execute(runnable);
+        threadPoolExecutor.execute(runnable);
+    }
+
+    private void factory() {
+
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                Log.d(TAG,"执行1: ThreadName:" + Thread.currentThread().getName());
+            }
+        };
+
+        ThreadFactory threadFactory = new ThreadFactory() {
+            int count = 0;
+
+            @Override
+            public Thread newThread(Runnable runnable) {
+                count++;
+                return new Thread(runnable, "Thread-" + count);
+            }
+        };
+
+
+        Thread thread1 = threadFactory.newThread(runnable);
+        thread1.start();
+    }
+
+    private void executor() {
+
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                Log.d(TAG,"执行1: ThreadName:" + Thread.currentThread().getName());
+            }
+        };
+
+        ExecutorService executor = Executors.newCachedThreadPool();
+        executor.execute(runnable);
+        executor.execute(runnable);
+        executor.execute(runnable);
+
+    }
