@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.dylanc.viewbinding.inflateBindingWithGeneric
 import com.hyt.base_lib.interfaceA.InformListener
+import com.hyt.tool_lib.utils.L
 import com.permissionx.guolindev.PermissionX
 
 open class BaseActivity<VB: ViewBinding>: AppCompatActivity() {
 
     lateinit var binding: VB
+    val TAG = javaClass.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,20 +20,18 @@ open class BaseActivity<VB: ViewBinding>: AppCompatActivity() {
     }
 
     /**
-     * @param Permissions 要请求的权限
      * @param informListener 结果
+     * @param permissions 要请求的权限
      * */
     fun permissionX(informListener: InformListener,vararg permissions: String){
         PermissionX.init(this)
             .permissions(permissions.asList())
-
             //  .permissions(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-
             .onExplainRequestReason{ scope, den->
                 val message = "需要同意以下权限才能正常使用"
                 scope.showRequestReasonDialog(den, message, "确定", "取消")
             }
-            .request{ allGranted, grantedList, deniedList ->
+            .request{ allGranted, _, _ ->
                 if (allGranted) {
                     informListener.onSucceed()
                 } else {
