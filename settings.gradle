@@ -1,5 +1,4 @@
-include ':ui_lib'
-include ':tool_lib'
+
 rootProject.name = "Tokyo"
 
 // #Application
@@ -7,4 +6,6 @@ include ':punchapp'
 
 // #Library
 include ':base_lib'
+include ':ui_lib'
+include ':tool_lib'
 

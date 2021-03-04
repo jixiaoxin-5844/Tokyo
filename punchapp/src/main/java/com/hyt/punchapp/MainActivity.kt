@@ -9,6 +9,8 @@ import android.os.Bundle
 import android.os.IBinder
 import com.hyt.base_lib.base.BaseActivity
 import com.hyt.punchapp.databinding.ActivityMainBinding
+import com.hyt.punchapp.model.kv.AppKv
+import com.hyt.punchapp.service.ProcessService
 import com.hyt.punchapp.service.TestService
 import com.hyt.tool_lib.utils.L
 
@@ -41,15 +43,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         //设置具体包名启动
         //intent.setClassName(packageName,"com.hyt.punchapp.MainActivity2")
 
-        val intent = Intent(this,TestService::class.java)
+        val intent = Intent(this,ProcessService::class.java)
 
         binding.text.setOnClickListener {
-            L.d("TestService","启动")
-            bindService(intent,connection, Context.BIND_AUTO_CREATE)
+            L.d("ProcessService","启动")
+            startService(intent)
+        // bindService(intent,connection, Context.BIND_AUTO_CREATE)
         }
 
         binding.btn.setOnClickListener {
-            unbindService(connection)
+            val a = AppKv.getShowLoginDialog()
+            L.d("Hyttt","当前值$a")
+            AppKv.setShowLoginDialog(a + 1)
         }
 
 

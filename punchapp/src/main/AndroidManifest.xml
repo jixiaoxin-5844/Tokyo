@@ -19,15 +19,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tokyo">
 
-        <!--设置可以响应网页内容的隐式intent-->
+        <!-- 设置可以响应网页内容的隐式intent -->
         <activity android:name=".MainActivity2">
             <intent-filter tools:ignore="AppLinkUrlError">
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:scheme="https"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="https" />
             </intent-filter>
         </activity>
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,11 +51,17 @@
             </intent-filter>
         </receiver>
 
-        <!--一个服务-->
-        <service android:name=".service.TestService"
+        <!-- 一个服务 -->
+        <service
+            android:name=".service.TestService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <service
+            android:name=".service.ProcessService"
+            android:process=":process0"
             android:enabled="true"
             android:exported="false"/>
-
     </application>
 
 </manifest>
