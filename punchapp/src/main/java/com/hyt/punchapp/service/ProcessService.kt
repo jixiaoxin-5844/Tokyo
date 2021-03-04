@@ -4,7 +4,6 @@ import android.app.Service
 
 import android.content.Intent
 import android.os.IBinder
-import com.hyt.punchapp.bean.A
 import com.hyt.punchapp.model.kv.AppKv
 import com.hyt.tool_lib.utils.L
 import kotlinx.coroutines.*
@@ -14,26 +13,32 @@ class ProcessService : Service() {
 
     private val TAG = "Hyttt"
 
-    val a = A()
+    val stub = object :IUserManager.Stub(){
+        override fun getUserInfo(name: String?, age: Int) {
+
+            L.d(TAG,"当前线程name:${Thread.currentThread().name}")
+        }
+
+    }
 
 
     /*private val binder = object : IUserManager.Stub(){
 
     }*/
-    override fun onBind(intent: Intent): IBinder? {
-        return null
+    override fun onBind(intent: Intent): IBinder {
+        return stub
     }
 
     override fun onCreate() {
         super.onCreate()
-        L.d(TAG,"ProcessService - 开始读取...")
-        scope.launch {
+        L.d(TAG,"ProcessService - onCreate...")
+       /* scope.launch {
             while (true){
                 delay(2000)
                 val nowData = AppKv.getShowLoginDialog()
                 L.d(TAG,"ProcessService - 当前值$nowData")
             }
-        }
+        }*/
 
     }
 

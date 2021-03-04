@@ -1,5 +1,6 @@
 package com.hyt.punchapp
 
+import IUserManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -33,6 +34,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
 
     }
+/*
+    var stub: IUserManager? = null
+
+    //Aidl跨进程通信
+    private val connection1 = object :ServiceConnection{
+        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+            stub = IUserManager.Stub.asInterface(service)
+            stub!!.getUserInfo("",2)
+        }
+
+        override fun onServiceDisconnected(name: ComponentName?) {
+            stub = null
+        }
+
+    }*/
 
     override fun initViews() {
         super.initViews()
@@ -41,14 +57,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         binding.text.setOnClickListener {
             L.d("ProcessService","启动")
-            startService(intent)
-            // bindService(intent,connection, Context.BIND_AUTO_CREATE)
+           // startService(intent)
+            // bindService(intent,connection1, Context.BIND_AUTO_CREATE)
         }
 
         binding.btn.setOnClickListener {
-            val a = AppKv.getShowLoginDialog()
+           /* val a = AppKv.getShowLoginDialog()
             L.d("Hyttt","当前值$a")
-            AppKv.setShowLoginDialog(a + 1)
+            AppKv.setShowLoginDialog(a + 1)*/
         }
 
     }
