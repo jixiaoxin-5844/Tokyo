@@ -17,6 +17,12 @@ open class BaseActivity<VB: ViewBinding>: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = inflateBindingWithGeneric(layoutInflater)
         setContentView(binding.root)
+        initViews()
+    }
+
+    open fun initViews() {
+
+
     }
 
     /**

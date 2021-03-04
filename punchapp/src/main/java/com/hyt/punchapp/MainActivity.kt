@@ -34,21 +34,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-       /* val intent = Intent(Intent.ACTION_VIEW).apply {
-            data = Uri.parse("https://www.baidu.com")
-        }*/
-        //设置具体包名启动
-        //intent.setClassName(packageName,"com.hyt.punchapp.MainActivity2")
+    override fun initViews() {
+        super.initViews()
 
         val intent = Intent(this,ProcessService::class.java)
 
         binding.text.setOnClickListener {
             L.d("ProcessService","启动")
             startService(intent)
-        // bindService(intent,connection, Context.BIND_AUTO_CREATE)
+            // bindService(intent,connection, Context.BIND_AUTO_CREATE)
         }
 
         binding.btn.setOnClickListener {
@@ -57,9 +51,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             AppKv.setShowLoginDialog(a + 1)
         }
 
-
-
     }
-
 
 }

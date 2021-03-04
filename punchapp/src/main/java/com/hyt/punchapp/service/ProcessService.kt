@@ -1,8 +1,10 @@
 package com.hyt.punchapp.service
 
 import android.app.Service
+
 import android.content.Intent
 import android.os.IBinder
+import com.hyt.punchapp.bean.A
 import com.hyt.punchapp.model.kv.AppKv
 import com.hyt.tool_lib.utils.L
 import kotlinx.coroutines.*
@@ -12,7 +14,12 @@ class ProcessService : Service() {
 
     private val TAG = "Hyttt"
 
+    val a = A()
 
+
+    /*private val binder = object : IUserManager.Stub(){
+
+    }*/
     override fun onBind(intent: Intent): IBinder? {
         return null
     }
