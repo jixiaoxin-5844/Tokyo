@@ -1,20 +1,18 @@
-package com.hyt.punchapp
+package com.hyt.punchapp.view.activity.main
 
-import android.app.SearchManager
 import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
-import android.view.MotionEvent
-import android.view.View
 import android.widget.CompoundButton
-import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ToastUtils
 import com.hyt.base_lib.base.BaseActivity
 import com.hyt.base_lib.utils.ActivityUtils
 import com.hyt.punchapp.databinding.ActivityMainBinding
 import com.hyt.punchapp.service.ProcessService
 import com.hyt.punchapp.service.TestService
+import com.hyt.punchapp.view.MainActivity2
 import com.hyt.tool_lib.utils.L
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
@@ -53,6 +51,24 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }*/
 
     override fun initViews() {
+
+        with(binding.recyclerView){
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            val mainRVAdapter = MainRVAdapter(this@MainActivity)
+            adapter = mainRVAdapter
+
+            mainRVAdapter.setList(     mutableListOf("dsdds","",""))
+            mainRVAdapter.setItemListener(object : OnRVListener{
+                override fun onClick(position: Int) {
+
+                    ToastUtils.showLong("单击了 position:$position")
+                }
+
+            })
+        }
+
+
+
 
         val intent = Intent(this,ProcessService::class.java)
 
