@@ -3,8 +3,12 @@ package com.hyt.punchapp.view.activity.main
 import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
+import android.os.Handler
 import android.os.IBinder
+import android.os.Looper
+import android.os.Message
 import android.widget.CompoundButton
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ToastUtils
 import com.hyt.base_lib.base.BaseActivity
@@ -14,6 +18,8 @@ import com.hyt.punchapp.service.ProcessService
 import com.hyt.punchapp.service.TestService
 import com.hyt.punchapp.view.MainActivity2
 import com.hyt.tool_lib.utils.L
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
@@ -52,7 +58,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun initViews() {
 
-        with(binding.recyclerView){
+
+  /*      with(binding.recyclerView){
             layoutManager = LinearLayoutManager(this@MainActivity)
             val mainRVAdapter = MainRVAdapter(this@MainActivity)
             adapter = mainRVAdapter
@@ -65,19 +72,35 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 }
 
             })
-        }
+        }*/
 
 
 
 
         val intent = Intent(this,ProcessService::class.java)
 
-        binding.text.setOnClickListener {
-            ActivityUtils.startActivity<MainActivity2>(this){
 
+
+        binding.text.setOnClickListener {
+
+
+            val myHandler = MyHandler(Looper.getMainLooper())
+
+            val message = Message()
+            message.arg1 = 1
+           // myHandler.sendMessage(message)
+
+            lifecycleScope.launch (Dispatchers.IO){
+                Looper.prepare()
+                val myHandler0 = MyHandler(Looper.myLooper()!!)
+
+                val message2 = Message()
+                message2.arg1 = 2
+                myHandler0.sendMessage(message2)
+                Looper.loop()
             }
-            L.d("ProcessService","启动")
-           // startService(intent)
+
+            // startService(intent)
             // bindService(intent,connection1, Context.BIND_AUTO_CREATE)
         }
 
@@ -87,13 +110,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             AppKv.setShowLoginDialog(a + 1)*/
         }
 
-        binding.aaa.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
-            override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
 
-                ToastUtils.showLong("选中状态${isChecked}")
-            }
-        })
+
 
     }
+
+    inner class MyHandler(looper: Looper): Handler(looper){
+        override fun handleMessage(msg: Message) {
+            super.handleMessage(msg)
+            L.d("Hytttt","接收消息,threadName:${Thread.currentThread().name}")
+        }
+
+        override fun sendMessageAtTime(msg: Message, uptimeMillis: Long): Boolean {
+            return super.sendMessageAtTime(msg, uptimeMillis)
+        }
+    }
+
 
 }
