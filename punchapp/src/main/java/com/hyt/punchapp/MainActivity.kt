@@ -1,16 +1,17 @@
 package com.hyt.punchapp
 
-import IUserManager
+import android.app.SearchManager
 import android.content.ComponentName
-import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
-import android.net.Uri
-import android.os.Bundle
 import android.os.IBinder
+import android.view.MotionEvent
+import android.view.View
+import android.widget.CompoundButton
+import android.widget.Toast
+import com.blankj.utilcode.util.ToastUtils
 import com.hyt.base_lib.base.BaseActivity
 import com.hyt.punchapp.databinding.ActivityMainBinding
-import com.hyt.punchapp.model.kv.AppKv
 import com.hyt.punchapp.service.ProcessService
 import com.hyt.punchapp.service.TestService
 import com.hyt.tool_lib.utils.L
@@ -51,7 +52,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }*/
 
     override fun initViews() {
-        super.initViews()
 
         val intent = Intent(this,ProcessService::class.java)
 
@@ -66,6 +66,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             L.d("Hyttt","当前值$a")
             AppKv.setShowLoginDialog(a + 1)*/
         }
+
+        binding.aaa.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
+            override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
+
+                ToastUtils.showLong("选中状态${isChecked}")
+            }
+        })
 
     }
 

@@ -3,7 +3,10 @@ package com.hyt.punchapp.service
 import android.app.Service
 
 import android.content.Intent
+import android.os.Handler
 import android.os.IBinder
+import android.os.Looper
+import android.os.Message
 import com.hyt.punchapp.model.kv.AppKv
 import com.hyt.tool_lib.utils.L
 import kotlinx.coroutines.*
@@ -13,6 +16,7 @@ class ProcessService : Service() {
 
     private val TAG = "Hyttt"
 
+    //aidl
     val stub = object :IUserManager.Stub(){
         override fun getUserInfo(name: String?, age: Int) {
 
@@ -21,12 +25,17 @@ class ProcessService : Service() {
 
     }
 
+    //message
+    val handler = ProcessHandler(Looper.getMainLooper())
+
+
 
     /*private val binder = object : IUserManager.Stub(){
 
     }*/
-    override fun onBind(intent: Intent): IBinder {
-        return stub
+    override fun onBind(intent: Intent): IBinder? {
+       // return stub
+        return null
     }
 
     override fun onCreate() {
@@ -40,12 +49,28 @@ class ProcessService : Service() {
             }
         }*/
 
+
     }
 
     override fun onDestroy() {
         super.onDestroy()
         if(scope.isActive){
             scope.cancel()
+        }
+    }
+
+    inner class ProcessHandler(looper: Looper) : Handler(looper){
+        val MSG_0 = 0
+
+        override fun handleMessage(msg: Message) {
+            super.handleMessage(msg)
+            val obtain = Message.obtain(msg)
+            when(obtain.what){
+                MSG_0 ->{
+
+                }
+            }
+
         }
     }
 }

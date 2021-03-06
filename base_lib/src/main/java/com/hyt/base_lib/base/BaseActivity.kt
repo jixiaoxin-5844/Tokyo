@@ -8,7 +8,7 @@ import com.hyt.base_lib.interfaceA.InformListener
 import com.hyt.tool_lib.utils.L
 import com.permissionx.guolindev.PermissionX
 
-open class BaseActivity<VB: ViewBinding>: AppCompatActivity() {
+abstract class BaseActivity<VB: ViewBinding>: AppCompatActivity() {
 
     lateinit var binding: VB
     val TAG = javaClass.simpleName
@@ -20,10 +20,7 @@ open class BaseActivity<VB: ViewBinding>: AppCompatActivity() {
         initViews()
     }
 
-    open fun initViews() {
-
-
-    }
+    abstract fun initViews()
 
     /**
      * @param informListener 结果

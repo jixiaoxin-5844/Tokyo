@@ -5,4 +5,10 @@ import com.hyt.punchapp.databinding.ActivityMain2Binding
 
 class MainActivity2 : BaseActivity<ActivityMain2Binding>() {
 
+
+    override fun initViews() {
+
+
+    }
+
 }
