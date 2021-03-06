@@ -11,6 +11,7 @@ import android.widget.CompoundButton
 import android.widget.Toast
 import com.blankj.utilcode.util.ToastUtils
 import com.hyt.base_lib.base.BaseActivity
+import com.hyt.base_lib.utils.ActivityUtils
 import com.hyt.punchapp.databinding.ActivityMainBinding
 import com.hyt.punchapp.service.ProcessService
 import com.hyt.punchapp.service.TestService
@@ -56,6 +57,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         val intent = Intent(this,ProcessService::class.java)
 
         binding.text.setOnClickListener {
+            ActivityUtils.startActivity<MainActivity2>(this){
+
+            }
             L.d("ProcessService","启动")
            // startService(intent)
             // bindService(intent,connection1, Context.BIND_AUTO_CREATE)
