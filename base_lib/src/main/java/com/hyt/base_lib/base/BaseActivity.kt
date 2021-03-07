@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.dylanc.viewbinding.inflateBindingWithGeneric
+import com.hyt.base_lib.R
 import com.hyt.base_lib.interfaceA.InformListener
-import com.hyt.tool_lib.utils.L
 import com.permissionx.guolindev.PermissionX
 
 abstract class BaseActivity<VB: ViewBinding>: AppCompatActivity() {
@@ -16,6 +16,8 @@ abstract class BaseActivity<VB: ViewBinding>: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = inflateBindingWithGeneric(layoutInflater)
+        //控制自主主题
+       // setTheme(R.style.Theme_MyAppTheme)
         setContentView(binding.root)
         initViews()
     }

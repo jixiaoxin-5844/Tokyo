@@ -10,6 +10,7 @@ import android.os.Message
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.hyt.base_lib.base.BaseActivity
+import com.hyt.punchapp.R
 import com.hyt.punchapp.databinding.ActivityMainBinding
 import com.hyt.punchapp.service.ProcessService
 import com.hyt.punchapp.service.TestService
@@ -58,6 +59,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun initViews() {
         viewModel = ViewModelProvider(this,MainViewModelFactory(1))[MainViewModel::class.java]
+
+
 
 
         lifecycle.addObserver(MyObserver())
