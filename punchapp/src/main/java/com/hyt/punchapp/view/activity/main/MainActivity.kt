@@ -7,16 +7,12 @@ import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
 import android.os.Message
-import android.widget.CompoundButton
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.blankj.utilcode.util.ToastUtils
 import com.hyt.base_lib.base.BaseActivity
-import com.hyt.base_lib.utils.ActivityUtils
 import com.hyt.punchapp.databinding.ActivityMainBinding
 import com.hyt.punchapp.service.ProcessService
 import com.hyt.punchapp.service.TestService
-import com.hyt.punchapp.view.MainActivity2
 import com.hyt.tool_lib.utils.L
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,6 +20,9 @@ import kotlinx.coroutines.launch
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
   //  private val TAG = "Hyttt"
+    private lateinit var viewModel: MainViewModel
+
+   // private val viewModel1 by viewModels<MainViewModel>()
 
     lateinit var testService: TestService.TestBinder
 
@@ -34,6 +33,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             testService.startDownload()
             testService.getProgress()
         }
+
 
         override fun onServiceDisconnected(name: ComponentName?) {
 
@@ -57,7 +57,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }*/
 
     override fun initViews() {
+        viewModel = ViewModelProvider(this,MainViewModelFactory(1))[MainViewModel::class.java]
 
+
+        lifecycle.addObserver(MyObserver())
 
   /*      with(binding.recyclerView){
             layoutManager = LinearLayoutManager(this@MainActivity)
