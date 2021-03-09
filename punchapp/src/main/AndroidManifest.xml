@@ -19,6 +19,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tokyo">
 
+        <activity android:name=".view.activity.splash.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <!-- 设置可以响应网页内容的隐式intent -->
         <activity android:name=".view.MainActivity2">
             <intent-filter tools:ignore="AppLinkUrlError">
@@ -30,18 +37,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.activity.main.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <meta-data
             android:name="BUGLY_APPID"
-            android:value="${BUGLY_APP_ID}" />
-
-        <!-- 开机广播 -->
+            android:value="${BUGLY_APP_ID}" /> <!-- 开机广播 -->
         <receiver
             android:name=".BootReceiver"
             android:enabled="true"
@@ -49,19 +50,24 @@
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
-        </receiver>
-
-        <!-- 一个服务 -->
+        </receiver> <!-- 进程通信广播 -->
+        <receiver
+            android:name=".ProcessReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.hyt.ProcessReceiver" />
+            </intent-filter>
+        </receiver> <!-- 一个服务 -->
         <service
             android:name=".service.TestService"
             android:enabled="true"
             android:exported="false" />
-
         <service
             android:name=".service.ProcessService"
-            android:process=":process0"
             android:enabled="true"
-            android:exported="false"/>
+            android:exported="false"
+            android:process=":process0" />
     </application>
 
 </manifest>

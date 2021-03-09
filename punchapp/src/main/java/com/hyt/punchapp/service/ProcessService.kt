@@ -1,15 +1,22 @@
 package com.hyt.punchapp.service
 
 import android.app.Service
+import android.content.BroadcastReceiver
+import android.content.Context
 
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
 import android.os.Message
+import com.hyt.base_lib.base.EventBusDataBean
+import com.hyt.punchapp.ProcessReceiver
 import com.hyt.punchapp.model.kv.AppKv
 import com.hyt.tool_lib.utils.L
 import kotlinx.coroutines.*
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class ProcessService : Service() {
     private val scope = CoroutineScope(Job() + Dispatchers.IO)
@@ -25,14 +32,6 @@ class ProcessService : Service() {
 
     }
 
-    //message
-    val handler = ProcessHandler(Looper.getMainLooper())
-
-
-
-    /*private val binder = object : IUserManager.Stub(){
-
-    }*/
     override fun onBind(intent: Intent): IBinder? {
        // return stub
         return null
@@ -41,15 +40,13 @@ class ProcessService : Service() {
     override fun onCreate() {
         super.onCreate()
         L.d(TAG,"ProcessService - onCreate...")
-       /* scope.launch {
-            while (true){
-                delay(2000)
-                val nowData = AppKv.getShowLoginDialog()
-                L.d(TAG,"ProcessService - 当前值$nowData")
-            }
-        }*/
 
-
+        //注册广播
+        val intentFilter = IntentFilter().apply {
+            addAction("android.PunchApp.ProcessTorService")
+        }
+         val processReceiver = Process()
+        registerReceiver(processReceiver,intentFilter)
     }
 
     override fun onDestroy() {
@@ -59,18 +56,16 @@ class ProcessService : Service() {
         }
     }
 
-    inner class ProcessHandler(looper: Looper) : Handler(looper){
-        val MSG_0 = 0
+    inner class Process: BroadcastReceiver(){
+        override fun onReceive(context: Context?, intent: Intent?) {
+            val stringExtra = intent?.getStringExtra("DATA")
+            L.d(TAG,"ProcessService ->Process: onReceive 接收的数据:${stringExtra}")
+            L.d(TAG,"ProcessService ->当前ThreadName:${Thread.currentThread().name}")
+            scope.launch(Dispatchers.IO) {
+            L.d(TAG,"ProcessService ->当前ThreadName:${Thread.currentThread().name}")
 
-        override fun handleMessage(msg: Message) {
-            super.handleMessage(msg)
-            val obtain = Message.obtain(msg)
-            when(obtain.what){
-                MSG_0 ->{
-
-                }
             }
-
         }
+
     }
 }

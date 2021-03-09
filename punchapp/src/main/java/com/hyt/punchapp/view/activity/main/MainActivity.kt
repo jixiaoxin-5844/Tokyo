@@ -1,8 +1,6 @@
 package com.hyt.punchapp.view.activity.main
 
-import android.content.ComponentName
-import android.content.Intent
-import android.content.ServiceConnection
+import android.content.*
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
@@ -10,6 +8,7 @@ import android.os.Message
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.hyt.base_lib.base.BaseActivity
+import com.hyt.base_lib.base.EventBusDataBean
 import com.hyt.punchapp.R
 import com.hyt.punchapp.databinding.ActivityMainBinding
 import com.hyt.punchapp.service.ProcessService
@@ -17,6 +16,7 @@ import com.hyt.punchapp.service.TestService
 import com.hyt.tool_lib.utils.L
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.greenrobot.eventbus.EventBus
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
@@ -83,16 +83,30 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
 
 
-        val intent = Intent(this,ProcessService::class.java)
 
+       // val intent = Intent(this,ProcessService::class.java)
+
+        /*val intentFilter = IntentFilter().apply {
+            addAction("android.hyt.ProcessReceiver")
+        }
+        val forceOfflineReceiver2 = ForceOfflineReceiver()
+        registerReceiver(forceOfflineReceiver2,intentFilter)*/
 
 
         binding.text.setOnClickListener {
 
 
+
+            //val intent1 = Intent("android.hyt.ProcessReceiver")
+            val intent1 = Intent("android.PunchApp.ProcessTorService")
+            intent1.setPackage(packageName)
+            intent1.putExtra("DATA","嘿嘿嘿")
+            sendBroadcast(intent1)
+
             val myHandler = MyHandler(Looper.getMainLooper())
 
-            val message = Message()
+
+       /*     val message = Message()
             message.arg1 = 1
            // myHandler.sendMessage(message)
 
@@ -104,7 +118,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 message2.arg1 = 2
                 myHandler0.sendMessage(message2)
                 Looper.loop()
-            }
+            }*/
 
             // startService(intent)
             // bindService(intent,connection1, Context.BIND_AUTO_CREATE)
@@ -120,6 +134,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
 
     }
+
+
 
     inner class MyHandler(looper: Looper): Handler(looper){
         override fun handleMessage(msg: Message) {
