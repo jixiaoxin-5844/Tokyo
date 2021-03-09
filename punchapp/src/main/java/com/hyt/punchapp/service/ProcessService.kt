@@ -24,13 +24,11 @@ class ProcessService : Service() {
     private val TAG = "Hyttt"
 
     //aidl
-    val stub = object :IUserManager.Stub(){
+    /*val stub = object :IUserManager.Stub(){
         override fun getUserInfo(name: String?, age: Int) {
-
             L.d(TAG,"当前线程name:${Thread.currentThread().name}")
         }
-
-    }
+    }*/
 
     override fun onBind(intent: Intent): IBinder? {
        // return stub
@@ -43,10 +41,16 @@ class ProcessService : Service() {
 
         //注册广播
         val intentFilter = IntentFilter().apply {
-            addAction("android.PunchApp.ProcessTorService")
+            addAction(ServiceAction.ProcessService)
         }
          val processReceiver = Process()
         registerReceiver(processReceiver,intentFilter)
+
+        //发送广播
+      /*  val intent1 = Intent(ServiceAction.ProcessService)
+        intent1.setPackage(packageName)
+        intent1.putExtra("DATA","嘿嘿嘿")
+        sendBroadcast(intent1)*/
     }
 
     override fun onDestroy() {

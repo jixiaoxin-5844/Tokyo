@@ -12,6 +12,7 @@ import com.hyt.base_lib.base.EventBusDataBean
 import com.hyt.punchapp.R
 import com.hyt.punchapp.databinding.ActivityMainBinding
 import com.hyt.punchapp.service.ProcessService
+import com.hyt.punchapp.service.ServiceAction
 import com.hyt.punchapp.service.TestService
 import com.hyt.tool_lib.utils.L
 import kotlinx.coroutines.Dispatchers
@@ -98,10 +99,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
 
             //val intent1 = Intent("android.hyt.ProcessReceiver")
-            val intent1 = Intent("android.PunchApp.ProcessTorService")
-            intent1.setPackage(packageName)
-            intent1.putExtra("DATA","嘿嘿嘿")
-            sendBroadcast(intent1)
+
 
             val myHandler = MyHandler(Looper.getMainLooper())
 
