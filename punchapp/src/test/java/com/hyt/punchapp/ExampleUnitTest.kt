@@ -1,5 +1,6 @@
 package com.hyt.punchapp
 
+import kotlinx.coroutines.*
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -12,6 +13,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock
  */
 class ExampleUnitTest {
 
+    private val scope = CoroutineScope(Job() + Dispatchers.IO)
+
     private val lock = ReentrantReadWriteLock()
     private val readLock = lock.readLock()
     private val writeLock = lock.writeLock()
@@ -21,9 +24,10 @@ class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
 
-       // Thread{
-            println("开始读取数据")
+        scope.launch {
+            println("开始读取数据threadName:${Thread.currentThread().name}")
             for (i in 0 until 10000){
+               // delay(100)
                 if(list.size > i){
                     val list1 = getList(i)
                     println("读取到数据：$list1")
@@ -31,15 +35,19 @@ class ExampleUnitTest {
                     println("无position为$i 的数据")
                 }
             }
-        //}.start()
+        }
 
-        //Thread{
+
+/*
+        scope.launch {
+            println("开始写入数据threadName:${Thread.currentThread().name}")
             println("开始写入数据")
             for (i in 0 until 10000){
+                delay(1000)
                 println("写入数据position:$i -> num:$i")
                 addList(i,i)
             }
-       // }.start()
+        }*/
 
     }
 

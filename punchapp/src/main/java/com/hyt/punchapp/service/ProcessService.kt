@@ -43,7 +43,7 @@ class ProcessService : Service() {
         val intentFilter = IntentFilter().apply {
             addAction(ServiceAction.ProcessService)
         }
-         val processReceiver = Process()
+         val processReceiver = ProcessReceiver()
         registerReceiver(processReceiver,intentFilter)
 
         //发送广播
@@ -60,7 +60,7 @@ class ProcessService : Service() {
         }
     }
 
-    inner class Process: BroadcastReceiver(){
+    inner class ProcessReceiver: BroadcastReceiver(){
         override fun onReceive(context: Context?, intent: Intent?) {
             val stringExtra = intent?.getStringExtra("DATA")
             L.d(TAG,"ProcessService ->Process: onReceive 接收的数据:${stringExtra}")

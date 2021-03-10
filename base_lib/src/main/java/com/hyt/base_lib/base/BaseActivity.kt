@@ -34,6 +34,9 @@ abstract class BaseActivity<VB: ViewBinding>: AppCompatActivity() {
             EventBus.getDefault().register(this)
         }
         initViews()
+
+        L.d("Hyttt","this:" + this)
+        L.d("Hyttt","this:" + this@BaseActivity)
     }
 
     abstract fun initViews()

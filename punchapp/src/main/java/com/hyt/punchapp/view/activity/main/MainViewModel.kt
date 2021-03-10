@@ -11,5 +11,5 @@ import androidx.lifecycle.ViewModel
  */
 class MainViewModel(result: Int): ViewModel() {
 
-    val a = MutableLiveData(0)
+    val a = MutableLiveData(result)
 }
