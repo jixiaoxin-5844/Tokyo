@@ -5,8 +5,10 @@ import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
 import android.os.Message
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.blankj.utilcode.util.ToastUtils
 import com.hyt.base_lib.base.BaseActivity
 import com.hyt.base_lib.base.EventBusDataBean
 import com.hyt.punchapp.R
@@ -95,6 +97,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
 
         binding.text.setOnClickListener {
+
+            lifecycleScope.launch (Dispatchers.IO){
+                Handler(Looper.getMainLooper()).post {
+                    Toast.makeText(this@MainActivity,"红红火火恍恍惚惚",Toast.LENGTH_LONG).show()
+                }
+                //ToastUtils.showShort("红红火火恍恍惚惚")
+            }
 
 
 
