@@ -3,20 +3,11 @@ package com.hyt.punchapp.service
 import android.app.Service
 import android.content.BroadcastReceiver
 import android.content.Context
-
 import android.content.Intent
 import android.content.IntentFilter
-import android.os.Handler
 import android.os.IBinder
-import android.os.Looper
-import android.os.Message
-import com.hyt.base_lib.base.EventBusDataBean
-import com.hyt.punchapp.ProcessReceiver
-import com.hyt.punchapp.model.kv.AppKv
 import com.hyt.tool_lib.utils.L
 import kotlinx.coroutines.*
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 
 class ProcessService : Service() {
     private val scope = CoroutineScope(Job() + Dispatchers.IO)

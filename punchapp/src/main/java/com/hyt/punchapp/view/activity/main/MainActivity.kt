@@ -26,8 +26,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
   //  private val TAG = "Hyttt"
     private lateinit var viewModel: MainViewModel
 
-   // private val viewModel1 by viewModels<MainViewModel>()
-
     lateinit var testService: TestService.TestBinder
 
     private val connection = object : ServiceConnection{
@@ -44,56 +42,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
 
     }
-/*
-    var stub: IUserManager? = null
-
-    //Aidl跨进程通信
-    private val connection1 = object :ServiceConnection{
-        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-            stub = IUserManager.Stub.asInterface(service)
-            stub!!.getUserInfo("",2)
-        }
-
-        override fun onServiceDisconnected(name: ComponentName?) {
-            stub = null
-        }
-
-    }*/
 
     override fun initViews() {
         viewModel = ViewModelProvider(this,MainViewModelFactory(1))[MainViewModel::class.java]
-
-
-
-
-        lifecycle.addObserver(MyObserver())
-
-  /*      with(binding.recyclerView){
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            val mainRVAdapter = MainRVAdapter(this@MainActivity)
-            adapter = mainRVAdapter
-
-            mainRVAdapter.setList(     mutableListOf("dsdds","",""))
-            mainRVAdapter.setItemListener(object : OnRVListener{
-                override fun onClick(position: Int) {
-
-                    ToastUtils.showLong("单击了 position:$position")
-                }
-
-            })
-        }*/
-
-
-
-
-
-       // val intent = Intent(this,ProcessService::class.java)
-
-        /*val intentFilter = IntentFilter().apply {
-            addAction("android.hyt.ProcessReceiver")
-        }
-        val forceOfflineReceiver2 = ForceOfflineReceiver()
-        registerReceiver(forceOfflineReceiver2,intentFilter)*/
 
 
         binding.text.setOnClickListener {
@@ -106,54 +57,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             }
 
 
-
-            //val intent1 = Intent("android.hyt.ProcessReceiver")
-
-
-            val myHandler = MyHandler(Looper.getMainLooper())
-
-
-       /*     val message = Message()
-            message.arg1 = 1
-           // myHandler.sendMessage(message)
-
-            lifecycleScope.launch (Dispatchers.IO){
-                Looper.prepare()
-                val myHandler0 = MyHandler(Looper.myLooper()!!)
-
-                val message2 = Message()
-                message2.arg1 = 2
-                myHandler0.sendMessage(message2)
-                Looper.loop()
-            }*/
-
-            // startService(intent)
-            // bindService(intent,connection1, Context.BIND_AUTO_CREATE)
         }
 
         binding.btn.setOnClickListener {
-           /* val a = AppKv.getShowLoginDialog()
-            L.d("Hyttt","当前值$a")
-            AppKv.setShowLoginDialog(a + 1)*/
+
         }
-
-
 
 
     }
 
-
-
-    inner class MyHandler(looper: Looper): Handler(looper){
-        override fun handleMessage(msg: Message) {
-            super.handleMessage(msg)
-            L.d("Hytttt","接收消息,threadName:${Thread.currentThread().name}")
-        }
-
-        override fun sendMessageAtTime(msg: Message, uptimeMillis: Long): Boolean {
-            return super.sendMessageAtTime(msg, uptimeMillis)
-        }
-    }
 
 
 }

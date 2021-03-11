@@ -26,6 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <!-- 设置可以响应网页内容的隐式intent -->
         <activity android:name=".view.MainActivity2">
             <intent-filter tools:ignore="AppLinkUrlError">
@@ -42,7 +43,9 @@
 
         <meta-data
             android:name="BUGLY_APPID"
-            android:value="${BUGLY_APP_ID}" /> <!-- 开机广播 -->
+            android:value="${BUGLY_APP_ID}" />
+
+        <!-- 开机广播 -->
         <receiver
             android:name=".BootReceiver"
             android:enabled="true"
@@ -50,15 +53,9 @@
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
-        </receiver> <!-- 进程通信广播 -->
-        <receiver
-            android:name=".ProcessReceiver"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.hyt.ProcessReceiver" />
-            </intent-filter>
-        </receiver> <!-- 一个服务 -->
+        </receiver>
+
+        <!-- 一个服务 -->
         <service
             android:name=".service.TestService"
             android:enabled="true"
