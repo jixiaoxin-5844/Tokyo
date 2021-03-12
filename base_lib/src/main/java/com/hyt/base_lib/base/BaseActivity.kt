@@ -35,8 +35,7 @@ abstract class BaseActivity<VB: ViewBinding>: AppCompatActivity() {
         }
         initViews()
 
-        L.d("Hyttt","this:" + this)
-        L.d("Hyttt","this:" + this@BaseActivity)
+        L.d("Hyttt", "Now onCreate Activity: $this")
     }
 
     abstract fun initViews()

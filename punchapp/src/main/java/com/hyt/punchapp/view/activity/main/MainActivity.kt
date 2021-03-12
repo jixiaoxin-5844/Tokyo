@@ -4,22 +4,19 @@ import android.content.*
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
-import android.os.Message
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.blankj.utilcode.util.ToastUtils
 import com.hyt.base_lib.base.BaseActivity
-import com.hyt.base_lib.base.EventBusDataBean
-import com.hyt.punchapp.R
+import com.hyt.base_lib.utils.ActivityUtils
 import com.hyt.punchapp.databinding.ActivityMainBinding
-import com.hyt.punchapp.service.ProcessService
-import com.hyt.punchapp.service.ServiceAction
+import com.hyt.punchapp.lifecycle.KtxHandler
 import com.hyt.punchapp.service.TestService
+import com.hyt.punchapp.view.MainActivity2
 import com.hyt.tool_lib.utils.L
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.greenrobot.eventbus.EventBus
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
@@ -59,9 +56,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         }
 
+
         binding.btn.setOnClickListener {
 
+            ActivityUtils.startActivity<MainActivity2>(this){}
         }
+
 
 
     }
