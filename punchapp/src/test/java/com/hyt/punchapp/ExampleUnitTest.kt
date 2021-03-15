@@ -1,9 +1,11 @@
 package com.hyt.punchapp
 
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import org.junit.Test
-
-import org.junit.Assert.*
+import java.util.*
 import java.util.concurrent.locks.ReentrantReadWriteLock
 
 /**
@@ -19,7 +21,42 @@ class ExampleUnitTest {
     private val readLock = lock.readLock()
     private val writeLock = lock.writeLock()
 
-    private val list = mutableListOf(1,2,3,4,5,6)
+    private val list = mutableListOf(1, 2, 3, 4, 5, 6)
+
+    @Test
+    fun linkedList(){
+        val linkedList = LinkedList<String?>(arrayListOf("aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb","aa", "bb"))
+
+        var start = System.currentTimeMillis()
+
+        val iterator = linkedList.iterator()
+        iterator.forEach {
+
+            println("循环0:$it")
+        }
+        val end = System.currentTimeMillis()
+        System.out.println("使用for循环，所花费的时间: " + (end - start));
+        start = System.currentTimeMillis()
+
+        while (iterator.hasNext()){
+            val next = iterator.next()
+            println("循环1:$next")
+        }
+        val end2 = System.currentTimeMillis()
+
+
+        System.out.println("使用迭代器，所花费的时间: " + (end2 - start));
+
+        start = System.currentTimeMillis()
+
+        for (str in linkedList){
+            println("循环2:$str")
+        }
+        val end3 = System.currentTimeMillis()
+
+
+        System.out.println("使用迭代器，所花费的时间: " + (end3 - start));
+    }
 
     @Test
     fun addition_isCorrect() {
@@ -52,7 +89,7 @@ class ExampleUnitTest {
     }
 
 
-    fun addList(position:Int,num:Int){
+    fun addList(position: Int, num: Int){
         writeLock.lock()
         try {
             list.add(num)
@@ -61,7 +98,7 @@ class ExampleUnitTest {
         }
     }
 
-    fun getList(position:Int):Int{
+    fun getList(position: Int):Int{
         readLock.lock()
         try {
             return list[position]

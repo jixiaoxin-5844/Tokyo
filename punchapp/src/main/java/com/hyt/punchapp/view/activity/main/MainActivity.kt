@@ -17,6 +17,7 @@ import com.hyt.tool_lib.utils.L
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.util.*
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
@@ -62,6 +63,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             ActivityUtils.startActivity<MainActivity2>(this){}
         }
 
+        val linkedList = LinkedList<String?>(arrayListOf("aa","bb"))
+
+        val iterator = linkedList.iterator()
+        iterator.forEach {
+
+        }
+        while (iterator.hasNext()){
+            iterator.next()
+        }
 
 
     }
