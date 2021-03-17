@@ -1,7 +1,10 @@
 package com.hyt.base_lib.utils
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+
+//fun Activity.start<reified T>(context: Context) = ActivityUtils.startActivity<>(context)
 
 object ActivityUtils {
 

@@ -19,6 +19,24 @@ class TestService: Service() {
 
     private val testBinder = TestBinder()
 
+    /*
+    *   lateinit var testService: TestService.TestBinder
+
+    private val connection = object : ServiceConnection{
+        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+            testService = service as TestService.TestBinder
+            L.d("TestService","onServiceConnected")
+            testService.startDownload()
+            testService.getProgress()
+        }
+
+
+        override fun onServiceDisconnected(name: ComponentName?) {
+
+        }
+
+    }*/
+
     override fun onBind(intent: Intent): IBinder {
         L.d(TAG,"TestService - onBind")
         return testBinder

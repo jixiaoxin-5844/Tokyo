@@ -44,38 +44,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun initViews() {
         viewModel = ViewModelProvider(this,MainViewModelFactory(1))[MainViewModel::class.java]
 
-
         binding.text.setOnClickListener {
 
-            lifecycleScope.launch (Dispatchers.IO){
-                Handler(Looper.getMainLooper()).post {
-                    Toast.makeText(this@MainActivity,"红红火火恍恍惚惚",Toast.LENGTH_LONG).show()
-                }
-                //ToastUtils.showShort("红红火火恍恍惚惚")
-            }
-
-
         }
-
 
         binding.btn.setOnClickListener {
 
-            ActivityUtils.startActivity<MainActivity2>(this){}
-        }
-
-        val linkedList = LinkedList<String?>(arrayListOf("aa","bb"))
-
-        val iterator = linkedList.iterator()
-        iterator.forEach {
 
         }
-        while (iterator.hasNext()){
-            iterator.next()
-        }
+
 
 
     }
-
 
 
 }
