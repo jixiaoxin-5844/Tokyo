@@ -21,28 +21,12 @@ import java.util.*
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
-  //  private val TAG = "Hyttt"
+    //  private val TAG = "Hyttt"
     private lateinit var viewModel: MainViewModel
 
-    lateinit var testService: TestService.TestBinder
-
-    private val connection = object : ServiceConnection{
-        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-            testService = service as TestService.TestBinder
-            L.d("TestService","onServiceConnected")
-            testService.startDownload()
-            testService.getProgress()
-        }
-
-
-        override fun onServiceDisconnected(name: ComponentName?) {
-
-        }
-
-    }
 
     override fun initViews() {
-        viewModel = ViewModelProvider(this,MainViewModelFactory(1))[MainViewModel::class.java]
+        viewModel = ViewModelProvider(this, MainViewModelFactory(1))[MainViewModel::class.java]
 
         binding.text.setOnClickListener {
 
@@ -52,6 +36,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
 
         }
+
+
+        val linkedList = LinkedList<String>()
+
+        linkedList.add("1")
+        linkedList.add("2")
+        linkedList.add("3")
+        linkedList.add("4")
+        linkedList.add("5")
+
+        //打印此时的链表
+        linkedList.forEach {
+            L.d("$it")
+        }
+
 
 
 
