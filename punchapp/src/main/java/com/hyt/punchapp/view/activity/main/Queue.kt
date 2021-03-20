@@ -14,6 +14,7 @@ class Queue<E> {
 
     //入列
     fun push(value: E){
+        linkedList.addLast(value)
         linkedList.add(value)
     }
 
