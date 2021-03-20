@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModel
  * version : 1.0
  *
  */
-class MainViewModel(result: Int): ViewModel() {
+class MainViewModel(): ViewModel() {
 
-    val a = MutableLiveData(result)
 }

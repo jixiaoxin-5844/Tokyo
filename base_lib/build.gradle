@@ -39,8 +39,6 @@ android {
 }
 
 dependencies {
-
-
     api project(path: ':tool_lib')
     api project(path: ':ui_lib')
 
