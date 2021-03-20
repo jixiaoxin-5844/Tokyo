@@ -26,10 +26,21 @@ class Stack<E> {
         return linkedList.size
     }
 
-    //遍历 从栈底 到 栈顶
-    fun forEach(action: (E) -> Unit): Unit{
+    //遍历 从栈顶 到 栈底
+    fun forEachTop(action: (E) -> Unit): Unit{
+        if(linkedList.size <= 0){
+            return
+        }
         for (element in linkedList) action(element)
     }
 
+    //遍历 从栈底 到 栈顶
+    fun forEachBottom(action: (E) -> Unit): Unit{
+        if(linkedList.size <= 0){
+            return
+        }
+        for (index in (linkedList.size -1 ) downTo 0)
+            action(linkedList[index])
+    }
 
 }
