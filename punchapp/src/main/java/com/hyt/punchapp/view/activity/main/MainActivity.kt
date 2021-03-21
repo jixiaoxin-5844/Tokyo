@@ -1,11 +1,10 @@
 package com.hyt.punchapp.view.activity.main
 
+import android.view.MotionEvent
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.hyt.base_lib.base.BaseActivity
+import com.hyt.punchapp.R
 import com.hyt.punchapp.databinding.ActivityMainBinding
-import com.hyt.tool_lib.utils.L
-import java.lang.StringBuilder
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
@@ -13,10 +12,28 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun initViews() {
         initViewPager2()
+        initBottomBtn()
 
 
 
 
+
+    }
+
+    private fun initBottomBtn() {
+        binding.btn0.setText("首页")
+        binding.btn0.setImage(R.mipmap.logo_0)
+
+        binding.btn1.setText("我的")
+        binding.btn1.setImage(R.mipmap.logo_0)
+
+        binding.btn0.setOnClickListener {
+            binding.viewPager2.currentItem = 0
+        }
+
+        binding.btn1.setOnClickListener {
+            binding.viewPager2.currentItem = 1
+        }
 
     }
 
@@ -25,9 +42,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         val listOf = listOf(3, 5)
         val mainFragmentStateAdapter =
             MainFragmentStateAdapter(supportFragmentManager, lifecycle, listOf)
-        binding.viewPager2.adapter = mainFragmentStateAdapter
+
+
+        with(binding.viewPager2){
+            adapter = mainFragmentStateAdapter
+            isUserInputEnabled = false //设置不可滑动
+        }
 
     }
 
+/*    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        return super.onTouchEvent(event)
+    }
+
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        return super.dispatchTouchEvent(ev)
+    }*/
 
 }

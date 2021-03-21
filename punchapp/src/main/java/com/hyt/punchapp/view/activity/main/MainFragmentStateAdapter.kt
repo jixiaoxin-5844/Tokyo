@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.hyt.punchapp.view.fragment.HomeFragment
 import com.hyt.punchapp.view.fragment.MineFragment
 
 /**
@@ -30,6 +31,14 @@ class MainFragmentStateAdapter (
     override fun createFragment(position: Int): Fragment {
         val id = ids[position]
         createdIds.add(id)
+        when(position){
+            0 ->{
+                return HomeFragment()
+            }
+            1 ->{
+                return MineFragment()
+            }
+        }
         return MineFragment()
     }
 

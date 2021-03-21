@@ -16,14 +16,14 @@ class LeetCode1 {
         val nums = intArrayOf(2, 7, 11, 15)
         val indexs = IntArray(2)
         val hashMap = HashMap<Int, Int>()
-        val target = 9
+        val target = 18
         for (i in nums.indices){
             if(hashMap.containsKey(nums[i])){
                 indexs[0] = i
                 indexs[1] = hashMap[nums[i]]!!
                 break
             }
-            hashMap.put(target-nums[i],i) // 7-0
+            hashMap.put(target-nums[i],i) // 16-0
         }
         println("下标分别是${indexs[0]},${indexs[1]}")
     }

@@ -1,5 +1,6 @@
 package com.hyt.punchapp.view.fragment
 
+import com.blankj.utilcode.util.ToastUtils
 import com.hyt.base_lib.base.BaseFragment
 import com.hyt.punchapp.databinding.FragmentMineBinding
 
@@ -11,7 +12,13 @@ import com.hyt.punchapp.databinding.FragmentMineBinding
  */
 class MineFragment: BaseFragment<FragmentMineBinding>() {
     override fun initViews() {
-        binding
+        binding.root.setOnClickListener {
+            ToastUtils.showLong("root click")
+        }
+        binding.text.setOnClickListener {
+
+            ToastUtils.showLong("text click")
+        }
 
     }
 }

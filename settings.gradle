@@ -1,8 +1,8 @@
-include ':fucklife'
 rootProject.name = "Tokyo"
 
 // #Application
 include ':punchapp'
+include ':fucklife'
 
 // #Library
 include ':base_lib'
