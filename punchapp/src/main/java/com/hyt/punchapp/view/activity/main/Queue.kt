@@ -13,23 +13,27 @@ class Queue<E> {
     private val linkedList = LinkedList<E>()
 
     //入列
-    fun push(value: E){
-        linkedList.addLast(value)
-        linkedList.add(value)
+    fun offer(value: E){
+        linkedList.offer(value)
     }
 
     //出列
-    fun pop(): E{
-        return linkedList.removeFirst()
+    fun poll(): E?{
+        return linkedList.poll()
+    }
+
+    //查看但不出列
+    fun peek():E?{
+        return linkedList.peek()
     }
 
     fun size():Int{
         return linkedList.size
     }
 
-    //遍历 从头到尾
-    fun forEach(action: (E) -> Unit): Unit{
+    //遍历 从头到尾 !!!全部取出
+  /*  fun forEach(action: (E) -> Unit): Unit{
         for (element in linkedList) action(element)
-    }
+    }*/
 
 }
