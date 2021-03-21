@@ -12,9 +12,20 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private val viewModel by viewModels<MainViewModel>()
 
     override fun initViews() {
+        initViewPager2()
 
 
 
+
+
+    }
+
+    private fun initViewPager2() {
+        //动态创建，设置存储
+        val listOf = listOf(3, 5)
+        val mainFragmentStateAdapter =
+            MainFragmentStateAdapter(supportFragmentManager, lifecycle, listOf)
+        binding.viewPager2.adapter = mainFragmentStateAdapter
 
     }
 
