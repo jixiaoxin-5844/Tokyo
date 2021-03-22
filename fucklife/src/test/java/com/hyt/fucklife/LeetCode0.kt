@@ -70,6 +70,26 @@ class LeetCode0 {
         treeMap.put("",2)
     }
 
+    //找出数组中出现次数超过一半的元素
+    @Test
+    fun tee(){
+        val arrayOf = arrayOf(1, 2, 1, 1, 1, 23, 30)
+        var result = arrayOf[0]
+        var times = 1
+        for (i in 1 until arrayOf.size){
+            if(arrayOf[i] != result){
+                times--
+            }else{
+                times ++
+            }
+            if(times == -1){
+                times = 1
+                result = arrayOf[i]
+            }
+        }
+        println(result)
+
+    }
 
 
 

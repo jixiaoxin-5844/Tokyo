@@ -14,6 +14,9 @@ import com.hyt.tool_lib.utils.L
 class MoveBtn : ConstraintLayout {
     private lateinit var image: ImageView
 
+    private var maxRootViewWidth = 2000
+    private var maxRootViewHeight= 5000
+
     constructor(context: Context) : super(context) {
         initView(context)
     }
@@ -65,7 +68,10 @@ class MoveBtn : ConstraintLayout {
                 val offsetX = x - lastX
                 val offsetY = y - lastY
                 //更新位置
-                layout(left + offsetX, top + offsetY, right + offsetX, bottom + offsetY)
+                if((right + offsetX) < maxRootViewWidth && (bottom + offsetY) < maxRootViewHeight
+                        && (left + offsetX) > 0 && (top + offsetY) > 0){
+                    layout(left + offsetX, top + offsetY, right + offsetX, bottom + offsetY)
+                }
             }
             MotionEvent.ACTION_UP -> {
                 //判断回调click还是LongClick
@@ -80,6 +86,11 @@ class MoveBtn : ConstraintLayout {
 
         }
         return true
+    }
+
+    fun setWH(w: Int,h: Int){
+        maxRootViewWidth = w
+        maxRootViewHeight = h
     }
 
 
